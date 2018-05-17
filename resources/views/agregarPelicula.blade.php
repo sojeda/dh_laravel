@@ -3,7 +3,18 @@
         <title>Agregar Pelicula</title>
     </head>
     <body>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+               </ul>
+            </div>
+        @endif
+
         <form id="agregarPelicula" name="agregarPelicula" method="POST">
+                {{ csrf_field() }}  
             <div>
                 <label for="titulo">Titulo</label>
                 <input type="text" name="titulo" id="titulo"/>

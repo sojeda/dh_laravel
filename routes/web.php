@@ -45,11 +45,9 @@ Route::get('saludo/{saludo}', 'SaludoControlador@index');
 
 Route::get('saludo', 'Saludos\SaludoControlador@loquesea'); 
 
-Route::get('peliculas/{id}', 'PeliculasController@buscarPeliculaId');
-
 Route::get('peliculas/buscar/{nombre}', 'PeliculasController@buscarPeliculaNombre');   	 
 
-Route::get('peliculas', 'PeliculasController@listado');
+Route::get('peliculas', 'PeliculasController@listado')->name('peliculas.listado');
 
 Route::get('actores', 'ActorController@directory');
 
@@ -60,3 +58,7 @@ Route::get('actores/buscar', 'ActorController@search')->name('actor.buscar');
 Route::get('peliculas/agregar', 'PeliculasController@create')->name('peliculas.agregar');
 
 Route::post('peliculas/agregar', 'PeliculasController@store')->name('peliculas.guardar');
+
+Route::get('peliculas/{id}', 'PeliculasController@show')->name('peliculas.mostrar');
+
+Route::get('peliculas/{id}/eliminar', 'PeliculasController@delete')->name('peliculas.eliminar');
