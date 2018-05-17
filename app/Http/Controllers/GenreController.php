@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Genre;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -13,7 +14,9 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $genres = Genre::all();
+
+        return view('genres.index');
     }
 
     /**
@@ -23,7 +26,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('genres.create');
     }
 
     /**
@@ -34,51 +37,60 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $genre = Genre::create([
+
+        ]);
+
+        return redirect()->route('genres.show', $genre->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Genre $genre)
     {
-        //
+        return view('genres.show', compact('genre'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Genre $genre)
     {
-        //
+        return view('genres.edit', compact('genre'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Genre $genre)
     {
-        //
+        $genre->update([
+
+        ]);
+
+        return view('genres.show', compact('genre'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy(Genre $genre)
     {
-        //
+        $genre->delete();
+        return redirect()->route('genres.list', $genre->id);
     }
 }

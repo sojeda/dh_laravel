@@ -62,3 +62,5 @@ Route::post('peliculas/agregar', 'PeliculasController@store')->name('peliculas.g
 Route::get('peliculas/{id}', 'PeliculasController@show')->name('peliculas.mostrar');
 
 Route::get('peliculas/{id}/eliminar', 'PeliculasController@delete')->name('peliculas.eliminar');
+
+Route::resource('photos', 'GenreController');
