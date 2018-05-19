@@ -12,21 +12,9 @@ class Actor extends Model
     {
     	return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function movies()
+    {
+    	return $this->belongsToMany('App\Movie', 'actor_movie', 'actor_id', 'movie_id');
+    }
 }
-
-
-Actor::create([
-	'fist_name' => $request->input('first_name'),
-	'last_name' => $request->input('last_name'),
-	'rating' => $request->input('rating'),
-]);
-
-$actor = Actor::find(1);
-
-$actor->first_name = 'Hola';
-$actor->last_name = 'Hola';
-$actor->rating = 'Hola';
-$actor->save();
-
-
-$actor->delete();
